@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>College Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Body and Background - Modern Glassmorphism inspired by iOS */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background: linear-gradient(135deg, #a8dadc 0%, #457b9d 100%); 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+
+        /* Central Glass Card Container */
+        .container { 
+            width: 90%;
+            max-width: 500px; 
+            padding: 40px; 
+            border-radius: 24px; 
+            background: rgba(255, 255, 255, 0.25); 
+            backdrop-filter: blur(12px);        
+            -webkit-backdrop-filter: blur(12px); 
+            box-shadow: 0 12px 40px rgba(31, 38, 135, 0.3); 
+            border: 1px solid rgba(255, 255, 255, 0.35); 
+            color: #1d3557; 
+            text-align: center;
+        }
+
+        h2 { 
+            color: #1d3557; 
+            margin-bottom: 30px; 
+            font-weight: 700;
+            font-size: 1.8em;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        h3 {
+            color: #1d3557; 
+            margin: 25px 0 15px 0;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-align: left;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Unified Button Group */
+        .options-group { 
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        /* Button Styling */
+        .option-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 14px 20px;
+            text-decoration: none;
+            border: none;
+            border-radius: 12px; 
+            font-size: 15px;
+            font-weight: 600;
+            color: white;
+            background: var(--btn-bg);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            box-sizing: border-box; /* Fixes padding issues */
+        }
+
+        .option-button i {
+            margin-right: 10px;
+            font-size: 1.1em;
+        }
+
+        .option-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+            filter: brightness(1.05);
+        }
+
+        .option-button:active {
+            transform: translateY(0);
+        }
+
+        /* Unique Colors for Each Module */
+        .class-btn { --btn-bg: #00bfff; }      /* Sky Blue */
+        .subject-btn { --btn-bg: #2a9d8f; }    /* Teal */
+        .student-btn { --btn-bg: #e76f51; }    /* Burnt Orange */
+        
+        .report-btn { 
+            --btn-bg: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            font-size: 16px;
+            padding: 18px;
+        }
+
+        /* Smooth page fade-in */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container { animation: fadeIn 0.8s ease-out; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2><i class="fas fa-university"></i> College Portal</h2>
+
+        <h3><i class="fas fa-chalkboard"></i> Class Management</h3>
+        <div class="options-group">
+            <a href="class-form.jsp" class="option-button class-btn"><i class="fas fa-plus-circle"></i> Add New Class</a>
+            <a href="ClassServlet" class="option-button class-btn"><i class="fas fa-list"></i> Show Existing Classes</a>
+        </div>
+
+        <h3><i class="fas fa-book"></i> Subject Management</h3>
+        <div class="options-group">
+            <a href="subject-form.jsp" class="option-button subject-btn"><i class="fas fa-plus-circle"></i> Add New Subject</a>
+            <a href="SubjectServlet" class="option-button subject-btn"><i class="fas fa-list"></i> Show Existing Subjects</a>
+        </div>
+
+        <h3><i class="fas fa-user-graduate"></i> Student Management</h3>
+        <div class="options-group">
+            <a href="StudentServlet?action=new" class="option-button student-btn"><i class="fas fa-user-plus"></i> Register New Student</a>
+            <a href="StudentServlet" class="option-button student-btn"><i class="fas fa-users"></i> Show Existing Students</a>
+        </div>
+
+        <h3><i class="fas fa-chart-line"></i> Admin Reports</h3>
+        <div class="options-group">
+            <a href="StudentServlet?action=report" class="option-button report-btn">
+                <i class="fas fa-table"></i> View Master Enrollment Matrix
+            </a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="4" author="indrajith">
+        <createTable tableName="book">
+            <column name="book_id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="book_name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="5" author="indrajith">
+        <addColumn tableName="student">
+            <column name="mobile_number" type="VARCHAR(15)"/>
+            <column name="address" type="VARCHAR(255)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="6" author="indrajith">
+        <createTable tableName="student_book_mapping">
+            <column name="mapping_id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="student_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="book_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="student_book_mapping" baseColumnNames="student_id"
+                                 referencedTableName="student" referencedColumnNames="student_id"
+                                 constraintName="fk_mapping_student_book"/>
+                                 
+        <addForeignKeyConstraint baseTableName="student_book_mapping" baseColumnNames="book_id"
+                                 referencedTableName="book" referencedColumnNames="book_id"
+                                 constraintName="fk_mapping_book_student"/>
+    </changeSet>
+
+    <changeSet id="7" author="indrajith">
+        <createTable tableName="student_subject_mapping">
+            <column name="mapping_id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="student_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="subject_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="student_subject_mapping" baseColumnNames="student_id"
+                                 referencedTableName="student" referencedColumnNames="student_id"
+                                 constraintName="fk_mapping_student_subject"/>
+                                 
+        <addForeignKeyConstraint baseTableName="student_subject_mapping" baseColumnNames="subject_id"
+                                 referencedTableName="subject" referencedColumnNames="subject_id"
+                                 constraintName="fk_mapping_subject_student"/>
+    </changeSet>
+
+    <changeSet id="8" author="indrajith">
+        <addUniqueConstraint tableName="student_subject_mapping" 
+                             columnNames="student_id, subject_id" 
+                             constraintName="uk_student_subject"/>
+    </changeSet>
+
+</databaseChangeLog>
